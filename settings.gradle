@@ -1,0 +1,8 @@
+include ':app'
+include ':common-library:commonLib'
+include ':common-library:libraries:lib'
+include ':library1:lib1'
+include ':library2:lib2'
+include ':library3:lib3'
+include ':library4:lib4'
+include ':library5:lib5'

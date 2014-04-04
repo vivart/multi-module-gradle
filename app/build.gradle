@@ -1,0 +1,81 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.9.0'
+    }
+}
+apply plugin: 'android'
+apply plugin: 'maven'
+
+task developer(dependsOn: 'assembleDebug') << {
+    println 'Building Developer'
+    installDebug.execute()
+}
+
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.0.3"
+    enforceUniquePackageName = false
+    packageBuildConfig = false
+
+    lintOptions{
+        //report lint errors but continue build
+        abortOnError false
+    }
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 19
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+
+    buildTypes {
+        debug {
+            runProguard true
+            proguardFile ('proguard-develop.txt')
+        }
+        release {
+            runProguard true
+            proguardFile ('proguard-release.txt')
+        }
+    }
+    productFlavors {
+        arm {
+            ndk {
+                abiFilter "armeabi"
+            }
+           
+        }
+        x86 {
+            ndk {
+                abiFilter "x86"
+            }
+           
+        }
+    }
+
+
+ }
+
+repositories {
+    maven {
+        url "http://nexus.example.com/content/groups/public"
+    }
+}
+
+dependencies {
+
+    compile project(':common-library:commonLib')
+    compile project(':library1:lib1')
+    compile project(':library2:lib2')
+    compile project(':library3:lib3')
+    compile project(':library4:lib4')
+    compile project(':library5:lib5')
+
+}

@@ -1,0 +1,58 @@
+buildscript {
+    repositories {
+        mavenCentral()
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.9.0'
+
+    }
+}
+
+
+
+apply plugin: 'android-library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.0.3"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 19
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'external-assets']
+	        assets.srcDirs = ['src/main/assets', 'external-assets/assets']
+        }
+    }
+
+
+
+}
+
+repositories {
+    maven {
+        url "http://nexus.example.com/content/groups/public"
+    }
+
+}
+
+dependencies {
+
+
+    compile project(':common-library:libraries:lib')
+
+    compile 'com.android.support:support-v13:18.0.+'
+    compile 'com.google.guava:guava:16.0.1'
+    compile 'com.google.code.findbugs:jsr305:2.0.1'
+    compile 'commons-codec:commons-codec:1.8'
+    compile 'com.google.android.gms:play-services:4.2.42'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile fileTree(dir: 'libs', include: '*.jar')
+
+}
+

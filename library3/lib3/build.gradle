@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.9.0'
+    }
+}
+
+apply plugin: 'android-library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.0.3"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 19
+    }
+
+    dexOptions {
+        preDexLibraries = false
+    }
+
+}
+
+repositories {
+    maven {
+        url "http://nexus.example.com/content/groups/public"
+    }
+
+
+}
+
+dependencies {
+
+    compile project(':common-library:commonLib')
+    compile project(':library1:lib1')
+
+}

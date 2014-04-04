@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        mavenCentral()
+
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.9.0'
+    }
+}
+
+apply plugin: 'android-library'
+apply plugin: 'maven'
+
+
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.0.3"
+
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java {
+                srcDirs 'src'
+            }
+            res {
+                srcDirs 'res'
+            }
+        }
+    }
+
+}
+
+repositories {
+    maven {
+        url "http://nexus.example.com/content/groups/public"
+    }
+
+}
+
+dependencies {
+
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
