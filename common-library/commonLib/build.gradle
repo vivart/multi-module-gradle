@@ -25,6 +25,7 @@ android {
 
     sourceSets {
         main {
+        //all drawables are in external-assets folder
             res.srcDirs = ['src/main/res', 'external-assets']
 	        assets.srcDirs = ['src/main/assets', 'external-assets/assets']
         }
